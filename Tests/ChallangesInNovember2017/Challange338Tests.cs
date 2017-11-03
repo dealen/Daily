@@ -31,8 +31,18 @@ namespace Tests.ChallangesInNovemner2017
             var myNextBirthdayYear = 2018;
             var myNextBirthdayMonth = 6;
             var myNextBirthdayDay = 6;
-            var result = whatDayIsIt.NameOfDayFromInteregesWithCalculation(myNextBirthdayYear, myNextBirthdayMonth, myNextBirthdayDay);
+            var result = whatDayIsIt.NameOfDayFromInteregesWithCalculationWithAlgorithm(myNextBirthdayYear, myNextBirthdayMonth, myNextBirthdayDay);
             result.ShouldBeEquivalentTo("Wednesday");
+        }
+
+        [Fact]
+        public void What_day_of_wee_landing_on_moon_took_place()
+        {
+            var landingYear = 1969;
+            var landingMonth = 6;
+            var landingDay = 24;
+            var result = whatDayIsIt.NameOfDayFromInteregesWithCalculationWithAlgorithm(landingYear, landingMonth, landingDay);
+            result.ShouldBeEquivalentTo("Thusday");
         }
     }
 }
