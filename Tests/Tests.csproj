@@ -10,6 +10,6 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Challange321\Challange321.csproj" />
+    <ProjectReference Include="..\Challanges\Challange321\Challange321.csproj" />
   </ItemGroup>
 </Project>
