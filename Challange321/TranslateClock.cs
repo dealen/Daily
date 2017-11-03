@@ -28,17 +28,9 @@ Use the audio clips found here(http://steve-audio.net/voices/) to give your cloc
  */
 namespace Challange321
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
-    }
-
     public class TranslateClock
     {
-        Dictionary<string, string> hoursDictionary = new Dictionary<string, string>{
+        Dictionary<string, string> hoursDict = new Dictionary<string, string>{
             { "00", "Noon" }, { "01", "First" }, { "02", "Two" }, { "03", "Third" }, { "04", "Four" },
             { "05", "Five" }, { "06", "Six" }, { "07", "Seven" }, { "08", "Eight" }, { "09", "Nine" },
             { "10", "Ten" }, { "11", "Eleven" }, { "12", "Twelve" }, { "13", "First" }, { "14", "Two" },
@@ -46,16 +38,16 @@ namespace Challange321
             { "20", "Eight" }, { "21", "Nine" }, { "22", "Ten" }, { "23", "Eleven" }
         };
 
-        Dictionary<int, string> minutesOneness = new Dictionary<int, string>{
+        Dictionary<int, string> minutesOnenessDict = new Dictionary<int, string>{
             { 1, "One" }, { 2, "Two" }, { 3, "Three" }, { 4, "Four" }, { 5, "Five" },
             { 6, "Six" }, { 7, "Seven" }, { 8, "Eight" }, { 9, "Nine" }, { 0, "" },
         };
 
-        Dictionary<int, string> minutesTens = new Dictionary<int, string>{
-            { 0, "zero" }, { 1, "exception" }, { 2, "Twenty" }, { 3, "Thirteen" }, { 4, "Fourteen" }, { 5, "Fiveteen" }
+        Dictionary<int, string> minutesTensDict = new Dictionary<int, string>{
+            { 0, "" }, { 1, "ten" }, { 2, "Twenty" }, { 3, "Thirty" }, { 4, "Forty" }, { 5, "Fifty" }
         };
 
-        Dictionary<int, string> minutesExc = new Dictionary<int, string>
+        Dictionary<int, string> minutesExcDict = new Dictionary<int, string>
         {
             { 10, "Ten" }, { 11, "Eleven" }, { 12, "Twelve" }, { 13, "Thirteen" }, { 14, "Fourteen" },
             { 15, "Fiveteen" }, { 16, "Sixteen" }, { 17, "Seventeen" }, { 18, "Eighteen" }, { 19, "Nineteen" }
@@ -63,35 +55,32 @@ namespace Challange321
 
         public string GetTimeInWords(string time)
         {
-            // 00:00
-            // 01234
-            var result = "";
-            var hourResult = "";
-            var minutesResult = "";
-
             var hour = time.Substring(0, 2);
             var minutesTens = time.Substring(3, 1);
             var minutesOneness = time.Substring(4, 1);
-
             var intMinute = 0;
 
-            hourResult = hoursDictionary[hour];
+            var amOrPm = int.Parse(hour) > 12 ? "pm" : "am";
+
+            var hourResult = hoursDict[hour];
+            var minutesResult = "";
 
             if (int.TryParse(minutesTens, out intMinute))
             {
-                if (intMinute >= 10 && intMinute < 20)
+                if (intMinute >= 1 && intMinute < 2)
                 {
                     var minutes = int.Parse(time.Substring(3, 2));
-                    minutesResult = minutesExc[minutes];
+                    minutesResult = minutesExcDict[minutes];
                 }
-                else 
+                else
                 {
-
-
+                    var minuteTen = int.Parse(time.Substring(3, 1));
+                    var minuteOne = int.Parse(time.Substring(4, 1));
+                    minutesResult = $" {minutesTensDict[minuteTen]} {minutesOnenessDict[minuteOne]} ";
                 }
-            }
 
-            return result;
+            }
+            return $"It's {hourResult.Trim()} {minutesResult.Trim()} {amOrPm.Trim()}";
         }
     }
 }
