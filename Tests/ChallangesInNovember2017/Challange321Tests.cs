@@ -3,7 +3,7 @@ using System;
 using Challange321;
 using FluentAssertions;
 
-namespace Tests
+namespace Tests.ChallangesInNovemner2017
 {    
     public class Challange321Tests
     {

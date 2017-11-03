@@ -11,5 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Challanges\Challange321\Challange321.csproj" />
+    <ProjectReference Include="..\Challanges\Challange338\Challange338.csproj" />
   </ItemGroup>
 </Project>
